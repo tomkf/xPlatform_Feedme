@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import yelp from '../api/yelp';
+import PriceResultList from '../components/PriceResultList';
+
 
 const SearchScreen = () => {
     const [term, setTerm] = useState('')
@@ -25,13 +27,20 @@ const SearchScreen = () => {
       }, [])
       
       console.log(businesses);
-      
+
     return (
     <View>
       <SearchBar
         term={term}
         onTermChange={(newTerm) => setTerm(newTerm)}
         onTermSubmit={() => searchAPI()} />
+
+        <div> 
+            <PriceResultList />
+            <PriceResultList />
+            <PriceResultList />
+            <PriceResultList /> 
+        </div>
 
       <FlatList
         data={businesses}
