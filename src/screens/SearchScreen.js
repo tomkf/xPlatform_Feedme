@@ -19,15 +19,29 @@ const SearchScreen = () => {
       setBusinesses(response.data.businesses);
       console.log(businesses);
     }
-  
+
+    useEffect(() => {
+        searchAPI();
+      }, [])
+      
+      console.log(businesses);
+      
     return (
-      <View>
-        <SearchBar
-          term={term}
-          onTermChange={(newTerm) => setTerm(newTerm)}
-          onTermSubmit={() => searchAPI()} />
-      </View>
-    );
+    <View>
+      <SearchBar
+        term={term}
+        onTermChange={(newTerm) => setTerm(newTerm)}
+        onTermSubmit={() => searchAPI()} />
+
+      <FlatList
+        data={businesses}
+        keyExtractor={(business) => business.id}
+        renderItem={({ item }) => {
+          return <Text>{item.name}</Text>
+        }}
+       />
+    </View>
+  );
   }
   
   const styles = StyleSheet.create({});
