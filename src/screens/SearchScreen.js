@@ -4,7 +4,6 @@ import SearchBar from '../components/SearchBar';
 import yelp from '../api/yelp';
 import PriceResultList from '../components/PriceResultList';
 
-
 const SearchScreen = () => {
     const [term, setTerm] = useState('')
     const [businesses, setBusinesses] = useState([]);
@@ -36,10 +35,10 @@ const SearchScreen = () => {
         onTermSubmit={() => searchAPI()} />
 
         <div> 
-            <PriceResultList />
-            <PriceResultList />
-            <PriceResultList />
-            <PriceResultList /> 
+            <PriceResultList company={this.state.businesses} />
+            <PriceResultList company={this.state.businesses}/>
+            <PriceResultList company={this.state.businesses}/>
+            <PriceResultList company={this.state.businesses}/> 
         </div>
 
       <FlatList
