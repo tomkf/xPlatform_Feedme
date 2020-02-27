@@ -4,9 +4,17 @@ import SearchBar from '../components/SearchBar';
 import yelp from '../api/yelp';
 import PriceResultList from '../components/PriceResultList';
 
+
+
 const SearchScreen = () => {
     const [term, setTerm] = useState('')
     const [businesses, setBusinesses] = useState([]);
+
+    const filterByPrice = (price) => {
+        return businesses.filter( business => {
+            return business.price === price
+        });
+    }
   
     const searchAPI = async () => {
       const response = await yelp.get('/search', {
@@ -24,7 +32,7 @@ const SearchScreen = () => {
     useEffect(() => {
         searchAPI();
       }, [])
-      
+
       console.log(businesses);
 
     return (
@@ -35,10 +43,10 @@ const SearchScreen = () => {
         onTermSubmit={() => searchAPI()} />
 
         <div> 
-            <PriceResultList company={this.state.businesses} />
-            <PriceResultList company={this.state.businesses}/>
-            <PriceResultList company={this.state.businesses}/>
-            <PriceResultList company={this.state.businesses}/> 
+            <PriceResultList company={this.state.businesses} results={filterByPrice('$')} title='Budget Eats'/>
+            <PriceResultList company={this.state.businesses} results={filterByPrice('$$')} title='Average'/>
+            <PriceResultList company={this.state.businesses} results={filterByPrice('$$$')} title="Gettin' Pricey"/>
+            <PriceResultList company={this.state.businesses} results={filterByPrice('$$$$')} title='Once in a Blue Moon'/> 
         </div>
 
       <FlatList
