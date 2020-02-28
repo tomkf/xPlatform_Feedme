@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-const PriceResultList = () => {
+const PriceResultList = ({storeName}) => {
   return (
     <View>
-        <Text style={styles.heading}>Price Category</Text>
+        <Text style={styles.heading}> {storeName.name} </Text>
     </View>
   );
 }

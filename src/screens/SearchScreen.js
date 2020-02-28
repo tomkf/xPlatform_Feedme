@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useState, useEffect} from 'react';
+import { StyleSheet, View, FlatList, Text } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import yelp from '../api/yelp';
 import PriceResultList from '../components/PriceResultList';
@@ -35,12 +35,10 @@ const SearchScreen = () => {
         onTermChange={(newTerm) => setTerm(newTerm)}
         onTermSubmit={() => searchAPI()} />
 
-        <div> 
-            <PriceResultList />
-            <PriceResultList />
-            <PriceResultList />
-            <PriceResultList /> 
-        </div>
+            <PriceResultList storeName={businesses[0]} />
+            <PriceResultList storeName={businesses[1]} />
+            <PriceResultList storeName={businesses[2]} />
+            <PriceResultList storeName={businesses[3]} /> 
 
       <FlatList
         data={businesses}
