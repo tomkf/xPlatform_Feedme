@@ -1,10 +1,17 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
+import PriceResult from './PriceResult'
 
-const PriceResultList = ({storeName}) => {
+const PriceResultList = ({apiResult}) => {
   return (
     <View>
-        <Text style={styles.heading}> {storeName.name} </Text>
+        <FlatList
+        showsHorizontalScrollIndicator={false}
+        data={apiResult}
+        keyExtractor={(business) => business.id}
+        renderItem={({ item }) => {
+          return <PriceResult result={ item } />
+        }}   />
     </View>
   );
 }

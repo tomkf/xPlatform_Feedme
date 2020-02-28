@@ -25,32 +25,40 @@ const SearchScreen = () => {
     useEffect(() => {
         searchAPI();
       }, [])
-      
-      console.log(businesses);
+
+      const filterByPrice = (price) => {
+        return businesses.filter( business => {
+            return business.price === price
+        });
+    }
 
     return (
-    <View>
+      <View style={{flex: 1}} >
       <SearchBar
         term={term}
         onTermChange={(newTerm) => setTerm(newTerm)}
         onTermSubmit={() => searchAPI()} />
+        
+        <Text style={styles.heading}>Budget Eats</Text>
+        <PriceResultList apiResult={filterByPrice('$')} />
 
-            <PriceResultList storeName={businesses[0]} />
-            <PriceResultList storeName={businesses[1]} />
-            <PriceResultList storeName={businesses[2]} />
-            <PriceResultList storeName={businesses[3]} /> 
+        <Text style={styles.heading}>Average</Text>
+         <PriceResultList apiResult={filterByPrice('$$')} />
 
-      <FlatList
-        data={businesses}
-        keyExtractor={(business) => business.id}
-        renderItem={({ item }) => {
-          return <Text>{item.name}</Text>
-        }}
-       />
+         <Text style={styles.heading}>Getting Pricey"</Text>
+          <PriceResultList apiResult={filterByPrice('$$$')} />
+
+          <Text style={styles.heading}>Expensive</Text>
+            <PriceResultList apiResult={filterByPrice('$$$$')}  />  
     </View>
   );
   }
-  
-  const styles = StyleSheet.create({});
-  
+
+  const styles = StyleSheet.create({
+    heading : {
+        fontSize: 16,
+        fontWeight: 'bold'
+    }
+    });
+    
   export default SearchScreen;
