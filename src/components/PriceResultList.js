@@ -1,17 +1,27 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
+
 import PriceResult from './PriceResult'
 
-const PriceResultList = ({apiResult}) => {
+const PriceResultList = ({apiResult, navigation}) => {
   return (
     <View>
         <FlatList
         showsHorizontalScrollIndicator={false}
         data={apiResult}
         keyExtractor={(business) => business.id}
+        
         renderItem={({ item }) => {
-          return <PriceResult result={ item } />
-        }}   />
+          const showDetail = () => {
+            navigation.navigate('StoreDetails', item)
+          }
+
+          return (
+            <TouchableOpacity onPress={() => showDetail(item)}>
+              <PriceResult result={ item } /> 
+            </TouchableOpacity> 
+          )
+        }}  />
     </View>
   );
 }

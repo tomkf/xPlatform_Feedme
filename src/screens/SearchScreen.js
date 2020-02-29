@@ -1,11 +1,11 @@
 import React, { useState, useEffect} from 'react';
-import { StyleSheet, View, FlatList, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+
 import SearchBar from '../components/SearchBar';
 import yelp from '../api/yelp';
 import PriceResultList from '../components/PriceResultList';
 
-
-const SearchScreen = () => {
+const SearchScreen = ({navigation}) => {
     const [term, setTerm] = useState('')
     const [businesses, setBusinesses] = useState([]);
   
@@ -40,18 +40,18 @@ const SearchScreen = () => {
         onTermSubmit={() => searchAPI()} />
         
         <Text style={styles.heading}>Budget Eats</Text>
-        <PriceResultList apiResult={filterByPrice('$')} />
+        <PriceResultList navigation={navigation} apiResult={filterByPrice('$')} />
 
         <Text style={styles.heading}>Average</Text>
-         <PriceResultList apiResult={filterByPrice('$$')} />
+         <PriceResultList navigation={navigation}  apiResult={filterByPrice('$$')} />
 
          <Text style={styles.heading}>Getting Pricey"</Text>
-          <PriceResultList apiResult={filterByPrice('$$$')} />
+          <PriceResultList navigation={navigation}  apiResult={filterByPrice('$$$')} />
 
           <Text style={styles.heading}>Expensive</Text>
-            <PriceResultList apiResult={filterByPrice('$$$$')}  />  
+            <PriceResultList navigation={navigation}  apiResult={filterByPrice('$$$$')}  />  
     </View>
-  );
+   );
   }
 
   const styles = StyleSheet.create({
