@@ -10,13 +10,14 @@ const PriceResultList = ({apiResult, navigation}) => {
         showsHorizontalScrollIndicator={false}
         data={apiResult}
         keyExtractor={(business) => business.id}
+        
         renderItem={({ item }) => {
           const showDetail = () => {
-            navigation.navigate('StoreDetails')
+            navigation.navigate('StoreDetails', item)
           }
 
           return (
-            <TouchableOpacity onPress={() => showDetail()}>
+            <TouchableOpacity onPress={() => showDetail(item)}>
               <PriceResult result={ item } /> 
             </TouchableOpacity> 
           )

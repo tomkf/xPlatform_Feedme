@@ -5,7 +5,6 @@ import SearchBar from '../components/SearchBar';
 import yelp from '../api/yelp';
 import PriceResultList from '../components/PriceResultList';
 
-
 const SearchScreen = ({navigation}) => {
     const [term, setTerm] = useState('')
     const [businesses, setBusinesses] = useState([]);
@@ -52,7 +51,7 @@ const SearchScreen = ({navigation}) => {
           <Text style={styles.heading}>Expensive</Text>
             <PriceResultList navigation={navigation}  apiResult={filterByPrice('$$$$')}  />  
     </View>
-  );
+   );
   }
 
   const styles = StyleSheet.create({
